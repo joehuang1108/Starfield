@@ -1,20 +1,28 @@
- 
+//NormalParticle[] aBunch = new NormalParticle;
+Particle[] aBunch = new Particle[500];
 void setup()
 {
 	size(600,600);
+	for (int i = 0; i < aBunch.length(); i++)
+	{
+		aBunch[i] = new Particle();
+	}
+
+		
+
+}
 void draw()
 {
-	//your code here
+	background(0);
 }
 class NormalParticle
 {
-	int myX, myY;
-	double dspeed, dDirection;
+	
 	
 }
 interface Particle
 {
-	//your code here
+
 }
 class OddballParticle //uses an interface
 {
