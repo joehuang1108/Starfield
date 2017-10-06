@@ -16,8 +16,8 @@ void draw()
 	background(0);
   for (int i = 0; i < aBunch.length; i++)
   {
-    aBunch[i].move();
-    aBunch[i].show();
+	aBunch[i].move();
+	aBunch[i].show();
   }
   aBunch[0] = new JumboParticle();
   aBunch[2] = new OddballParticle();
@@ -33,23 +33,23 @@ class Normal implements Particle
   int myColor, myOpac;
   Normal()
   {
-    myX = 250;
-    myY = 250;
-    mySpeed = Math.random()*10;
-    myDir = Math.random()*2*Math.PI;
-    myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+	myX = 250;
+	myY = 250;
+	mySpeed = Math.random()*10;
+	myDir = Math.random()*2*Math.PI;
+	myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
   }
   public void move()
   {
-    myX += mySpeed *Math.cos(myDir);
-    myY += mySpeed *Math.sin(myDir);
+	myX += mySpeed *Math.cos(myDir);
+	myY += mySpeed *Math.sin(myDir);
    
   }
   public void show()
   {
-    fill(myColor);
-    ellipse((float)myX,(float)myY, 10,10);
-    
+	fill(myColor);
+	ellipse((float)myX,(float)myY, 10,10);
+	
 	}
 
 }
@@ -59,20 +59,35 @@ interface Particle
   public void show();
 
 }
-class OddballParticle extends Normal //uses an interface
+class OddballParticle implements Particle  //uses an interface
 {
+	int myX, myY,myColor;
+	OddballParticle()
+	{
+		myX = 250;
+		myY = 250;
+		myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+		mySpeed = (Math.random()*10-10);
+	}
+	public void move()
+	{
+		myX = mySpeed;
+		myY = mySpeed;
+
+	}
 	public void show()
-  {
-    fill(myColor);
-    rect((float)myX,(float)myY,40,40);
-  }
+	{
+		fill(myColor);
+		rect(myX,myY,50,50);
+	}
+	
 }
 class JumboParticle extends Normal//uses inheritance
 {
 	public void show()
   {
-    fill(myColor);
-    ellipse((float)myX,(float)myY, 50 , 50);
+	fill(myColor);
+	ellipse((float)myX,(float)myY, 50 , 50);
   }
 }
 
