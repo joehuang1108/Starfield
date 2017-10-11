@@ -7,7 +7,8 @@ void setup()
 	{
 		aBunch[i] = new Normal();
 	}
-  
+  aBunch[0] = new JumboParticle();
+  aBunch[2] = new OddballParticle();
   
 
 }
@@ -19,13 +20,13 @@ void draw()
 	aBunch[i].move();
 	aBunch[i].show();
   }
-  aBunch[0] = new JumboParticle();
-  aBunch[2] = new OddballParticle();
+  
   
 }
 void mousePressed()
 {
-  redraw();
+   redraw();
+  
 }
 class Normal implements Particle
 {
@@ -61,24 +62,25 @@ interface Particle
 }
 class OddballParticle implements Particle  //uses an interface
 {
-	int myX, myY,myColor;
+	double myX, myY,mySpeed;
+	int myColor;
 	OddballParticle()
 	{
 		myX = 250;
 		myY = 250;
 		myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
-		mySpeed = (Math.random()*10-10);
+		mySpeed = (Math.random()*10);
 	}
 	public void move()
 	{
-		myX = mySpeed;
-		myY = mySpeed;
+		myX = 250;
+		myY = 250;
 
 	}
 	public void show()
 	{
 		fill(myColor);
-		rect(myX,myY,50,50);
+		rect((float)myX,(float)myY,50,50);
 	}
 	
 }
@@ -88,6 +90,12 @@ class JumboParticle extends Normal//uses inheritance
   {
 	fill(myColor);
 	ellipse((float)myX,(float)myY, 50 , 50);
+  }
+  	public void move()
+  {
+	myX += mySpeed *Math.cos(myDir);
+	myY += mySpeed *Math.sin(myDir);
+   
   }
 }
 
