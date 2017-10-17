@@ -23,11 +23,7 @@ void draw()
   
   
 }
-void mousePressed()
-{
-   redraw();
-  
-}
+
 class Normal implements Particle
 {
 	double myX, myY, mySpeed, myDir;
@@ -44,6 +40,14 @@ class Normal implements Particle
   {
 	myX += mySpeed *Math.cos(myDir);
 	myY += mySpeed *Math.sin(myDir);
+	if (((myX > 600) || (myX < 0))|| ((myY > 600) || (myY<0)))
+   	{
+   		myX = (Math.random()*450)+50;
+		myY = (Math.random()*450)+50;
+		mySpeed = Math.random()*10;
+		myDir = Math.random()*2*Math.PI;
+		myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+   	}
    
   }
   public void show()
@@ -62,7 +66,7 @@ interface Particle
 }
 class OddballParticle implements Particle  //uses an interface
 {
-	double myX, myY,mySpeed;
+	double myX, myY,mySpeed, myDir;
 	int myColor;
 	OddballParticle()
 	{
@@ -73,14 +77,21 @@ class OddballParticle implements Particle  //uses an interface
 	}
 	public void move()
 	{
-		myX = 250;
-		myY = 250;
+		myX += mySpeed *Math.cos(myDir);
+		myY += mySpeed *Math.sin(myDir);
+		if ((myX > 600) || (myY > 600))
+   	{
+   		myX = 250;
+   		myY = 250;
+   		myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+		mySpeed = (Math.random()*10);
+   	}
 
 	}
 	public void show()
 	{
 		fill(myColor);
-		rect((float)myX,(float)myY,50,50);
+		rect((int)myX,(int)myY,50,50);
 	}
 	
 }
@@ -91,12 +102,7 @@ class JumboParticle extends Normal//uses inheritance
 	fill(myColor);
 	ellipse((float)myX,(float)myY, 50 , 50);
   }
-  	public void move()
-  {
-	myX += mySpeed *Math.cos(myDir);
-	myY += mySpeed *Math.sin(myDir);
-   
-  }
+  	
 }
 
 
